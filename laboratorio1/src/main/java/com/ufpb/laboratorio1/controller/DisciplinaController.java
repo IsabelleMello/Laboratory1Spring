@@ -49,4 +49,21 @@ public class DisciplinaController {
 		}
 	}
 
+	@RequestMapping (value = "/{id}/nota", method = RequestMethod.PUT, consumes = "application/json")
+	public ResponseEntity<Disciplina> atualizarNota(@RequestBody final int id, final double nota){
+		try {
+			return new ResponseEntity<Disciplina>(disciplinaService.atualizarNota(id, nota),  HttpStatus.OK);
+			
+		}catch(final DisciplinaNotFoundException e){
+			 return ResponseEntity.notFound().build();
+			
+		}
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = "application/json")
+    public ResponseEntity<?> deletarDiciplina(@PathVariable int id){
+        this.disciplinaService.deletarDisciplina(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

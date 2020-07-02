@@ -28,6 +28,10 @@ public class DisciplinaService {
 	public Disciplina atualizarNome(int id, String nome) throws DisciplinaNotFoundException{
 		return repo.atualizarNome(id, nome);
 	}
+
+	public Disciplina atualizarNota(int id, double nota) throws DisciplinaNotFoundException{
+		return repo.atualizarNota(id, nota);
+	}
 	
 	public void deletarDisciplina(int id) {
 		repo.deletarDisciplina(id);

@@ -47,6 +47,17 @@ public class MockService {
 		}
 		throw new DisciplinaNotFoundException("Id não encontrado");
 	}
+
+	public Disciplina atualizarNota(int id, double nota) throws DisciplinaNotFoundException{		
+		for(Disciplina disciplina: this.disciplinas) {
+			if(disciplina.getId() == id) {
+				disciplina.setNota(nota);
+				return disciplina;
+
+			}
+		}
+		throw new DisciplinaNotFoundException("Id não encontrado");
+	}
 	
 	public void deletarDisciplina(int id){
 		Disciplina disciplina = null;
