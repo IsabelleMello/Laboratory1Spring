@@ -1,6 +1,6 @@
 package com.ufpb.laboratorio1.model;
 
-public class Disciplina {
+public class Disciplina implements Comparable<Disciplina>{
 	
 	private int id;
 	private String nome;
@@ -50,7 +50,10 @@ public class Disciplina {
 	public void setNota(double nota) {
 		this.nota = nota;
 	}
-	
-	
+
+	public int compareTo(Disciplina disc){
+		double disciplinaNota = ((Disciplina)disc).getNota();
+		return (int) (disciplinaNota - this.nota);
+	}
 
 }

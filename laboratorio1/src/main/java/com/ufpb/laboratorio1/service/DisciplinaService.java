@@ -33,7 +33,11 @@ public class DisciplinaService {
 		return repo.atualizarNota(id, nota);
 	}
 	
-	public void deletarDisciplina(int id) {
+	public void deletarDisciplina(int id) throws DisciplinaNotFoundException {
 		repo.deletarDisciplina(id);
+	}
+
+	public List<Disciplina> ranking(){
+		return repo.ranking();
 	}
 }

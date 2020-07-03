@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/api/disciplinas")
+@RequestMapping(value = "v1/api/disciplinas")
 public class DisciplinaController {
 	
 	@Autowired
@@ -62,8 +62,17 @@ public class DisciplinaController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = "application/json")
     public ResponseEntity<?> deletarDiciplina(@PathVariable int id){
-        this.disciplinaService.deletarDisciplina(id);
-        return ResponseEntity.noContent().build();
-    }
-
+        try{
+			this.disciplinaService.deletarDisciplina(id);
+		}
+		catch(final DisciplinaNotFoundException e){
+			return ResponseEntity.notFound().build();
+   		}
+		return null;
+	}
+	@RequestMapping(value = "/ranking", method = RequestMethod.GET, consumes= "aplication.json")
+	public ResponseEntity<List<Disciplina>> ranking(){
+		List<Disciplina> disciplinasRanking = this.disciplinaService.ranking();
+		return ResponseEntity.ok().body(disciplinasRanking);
+	}
 }

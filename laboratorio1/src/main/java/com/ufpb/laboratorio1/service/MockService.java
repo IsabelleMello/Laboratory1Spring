@@ -28,11 +28,11 @@ public class MockService {
 		for (Disciplina d : this.disciplinas) {
 			if(d.getId()== id) {
 				disciplina = d;
+
 			}
 		}
 		return disciplina;
 	}
-
 	public List<Disciplina> disciplinasCadastradas(){
 		return this.disciplinas;
 	}
@@ -59,15 +59,25 @@ public class MockService {
 		throw new DisciplinaNotFoundException("Id não encontrado");
 	}
 	
-	public void deletarDisciplina(int id){
+	public void deletarDisciplina(int id) throws DisciplinaNotFoundException{
 		Disciplina disciplina = null;
 	    for(Disciplina d : this.disciplinas) {
 	    	if(d.getId() == id) {
 		    	disciplina = d;
 	    	}
-	    }
+		}
+		if(disciplina.equals(null)){
+			throw new DisciplinaNotFoundException("Id não encontrado");
+
+		}
 	    
 	    this.disciplinas.remove(disciplina);
 	    
+	}
+
+	public List<Disciplina> ranking(){
+		Array.sort(disciplinas);
+
+		return this.disciplinas;
 	}
 }
